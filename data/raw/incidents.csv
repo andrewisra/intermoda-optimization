@@ -1,0 +1,6 @@
+incident_id,type,severity,route_id,stop_id,lat,lon,delay_impact_minutes,status,reported_at,description
+INC_001,traffic_jam,medium,TJ_1,TJ_DUKUH_ATAS,-6.2008,106.8228,6,active,2026-05-23 06:35:00,"Kemacetan padat sekitar Dukuh Atas, volume kendaraan tinggi"
+INC_002,flood,low,TJ_3,TJ_CAWANG,-6.2482,106.8728,3,monitoring,2026-05-23 06:44:00,Genangan ringan di ruas jalan dekat Halte Cawang
+INC_003,signal_failure,high,TJ_2,TJ_HARMONI,-6.1744,106.8258,12,active,2026-05-23 06:50:00,Gangguan sinyal ATCS di persimpangan Harmoni
+INC_004,vehicle_breakdown,medium,TJ_4,TJ_LEBAK_BULUS,-6.2865,106.7913,8,active,2026-05-23 06:55:00,Bus mengalami kendala teknis di Halte Lebak Bulus
+INC_005,heavy_rain,medium,TJ_5,TJ_KAMPUNG_BANDAN,-6.1552,106.8326,5,active,2026-05-23 07:00:00,Hujan deras mengurangi visibility di area Kampung Bandan

@@ -1,0 +1,11 @@
+route_id,route_name,mode,total_stops
+TJ_1,Blok M - Kota,Transjakarta,18
+TJ_2,Harmoni - Senen,Transjakarta,12
+TJ_3,Dukuh Atas - Pulo Gadung,Transjakarta,22
+TJ_4,Lebak Bulus - Ragunan,Transjakarta,15
+TJ_5,Kampung Bandan - Pluit,Transjakarta,20
+MRT_NS,MRT North-South,MRT,13
+KRL_BK,KRL Bogor-Kota,KRL,30
+KRL_ABE,KRL Tanah Abang - Angke,KRL,10
+LRT_KG_V,LRT Kelapa Gading - Velodrome,LRT,6
+MT_LOCAL_1,Mikrotrans Dukuh Atas,Mikrotrans,5

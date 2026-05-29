@@ -1,0 +1,46 @@
+### Health check
+GET http://127.0.0.1:8000/
+
+### Next ETA for a stop
+GET http://127.0.0.1:8000/eta/next?stop_id=MRT_DUKUH_ATAS&current_time=2026-05-23T07:20:00&limit=3
+
+### Transfer optimization
+POST http://127.0.0.1:8000/optimizer/transfer
+Content-Type: application/json
+
+{
+  "from_stop_id": "TJ_DUKUH_ATAS",
+  "to_stop_id": "MRT_DUKUH_ATAS",
+  "current_time": "2026-05-23T07:20:00",
+  "first_mode_eta_minutes": 5,
+  "load_factor": 0.75
+}
+
+### Safe speed recommendation
+POST http://127.0.0.1:8000/optimizer/speed
+Content-Type: application/json
+
+{
+  "current_speed_kmh": 28,
+  "target_arrival_minutes": 9,
+  "current_eta_minutes": 12,
+  "min_speed_kmh": 10,
+  "max_speed_kmh": 50
+}
+
+### Density at stop
+GET http://127.0.0.1:8000/density/stop?stop_id=TJ_DUKUH_ATAS&current_time=2026-05-23T07:20:00&window_minutes=15
+
+### Report incident
+POST http://127.0.0.1:8000/incidents/report
+Content-Type: application/json
+
+{
+  "incident_type": "flood",
+  "location_name": "Dukuh Atas",
+  "lat": -6.2001,
+  "lon": 106.8220,
+  "severity": "medium",
+  "description": "Water puddle causes slower bus movement.",
+  "reported_by": "driver"
+}

@@ -1,0 +1,10 @@
+mode,vehicle_type,seated_capacity,standing_capacity,total_capacity,safe_speed_min_kmh,safe_speed_max_kmh,depot_id
+Transjakarta,single_bus,40,40,80,10,50,DEP_BLOK_M
+Transjakarta,articulated_bus,60,60,120,10,50,DEP_BLOK_M
+Transjakarta,low_entry_bus,30,30,60,10,50,DEP_HARMONI
+Transjakarta,electric_bus,40,35,75,10,50,DEP_LEBAK_BULUS
+MRT,trainset_6car,480,720,1200,0,80,DEP_MRT_LEBAK_BULUS
+KRL,trainset_12car,1000,1000,2000,0,80,DEP_KRL_MANGGARAI
+LRT,trainset_2car,140,130,270,0,60,DEP_LRT_VELODROME
+LRT,trainset_4car,280,260,540,0,60,DEP_LRT_VELODROME
+Mikrotrans,microbus,10,5,15,10,40,DEP_LOCAL

@@ -1,0 +1,6 @@
+mode,vehicle_type,total_capacity,safe_speed_min_kmh,safe_speed_max_kmh
+Transjakarta,single_bus,80,10,50
+Transjakarta,articulated_bus,120,10,50
+MRT,trainset,1200,0,80
+KRL,trainset,2000,0,80
+Mikrotrans,microbus,15,10,40

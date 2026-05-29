@@ -1,0 +1,26 @@
+stop_id,stop_name,mode,lat,lon,hub
+TJ_DUKUH_ATAS,Halte Dukuh Atas,Transjakarta,-6.2008,106.8228,Dukuh Atas
+MRT_DUKUH_ATAS,Stasiun MRT Dukuh Atas BNI,MRT,-6.2001,106.8231,Dukuh Atas
+KRL_SUDIRMAN,Stasiun KRL Sudirman,KRL,-6.2027,106.8235,Dukuh Atas
+TJ_BLOK_M,Halte Blok M,Transjakarta,-6.2447,106.8001,Blok M
+MRT_BLOK_M,Stasiun MRT Blok M,MRT,-6.244,106.7989,Blok M
+TJ_BUNDARAN_HI,Halte Bundaran HI,Transjakarta,-6.1938,106.8227,Bundaran HI
+MRT_BUNDARAN_HI,Stasiun MRT Bundaran HI,MRT,-6.1939,106.8232,Bundaran HI
+TJ_TANAH_ABANG,Halte Tanah Abang,Transjakarta,-6.1892,106.8135,Tanah Abang
+KRL_TANAH_ABANG,Stasiun KRL Tanah Abang,KRL,-6.1897,106.8142,Tanah Abang
+TJ_MANGGARAI,Halte Manggarai,Transjakarta,-6.2171,106.852,Manggarai
+KRL_MANGGARAI,Stasiun KRL Manggarai,KRL,-6.2165,106.8515,Manggarai
+TJ_HARMONI,Halte Harmoni,Transjakarta,-6.1744,106.8258,Harmoni
+TJ_HARMONI_CENTRAL,Halte Harmoni Sentral,Transjakarta,-6.1748,106.8261,Harmoni
+TJ_LEBAK_BULUS,Halte Lebak Bulus,Transjakarta,-6.2865,106.7913,Lebak Bulus
+MRT_LEBAK_BULUS,Stasiun MRT Lebak Bulus Grab,MRT,-6.2898,106.7881,Lebak Bulus
+TJ_CAWANG,Halte Cawang,Transjakarta,-6.2482,106.8728,Cawang
+KRL_CAWANG,Stasiun KRL Cawang,KRL,-6.2429,106.8589,Cawang
+LRT_VELODROME,Stasiun LRT Velodrome,LRT,-6.184,106.879,Velodrome
+TJ_KAMPUNG_BANDAN,Halte Kampung Bandan,Transjakarta,-6.1552,106.8326,Kampung Bandan
+KRL_KAMPUNG_BANDAN,Stasiun KRL Kampung Bandan,KRL,-6.1548,106.832,Kampung Bandan
+TJ_SENAYAN,Halte Senayan,Transjakarta,-6.2274,106.8017,Senayan
+MRT_SENAYAN,Stasiun MRT Istora Mandiri,MRT,-6.2264,106.8023,Senayan
+MT_DUKUH_ATAS,Mikrotrans Dukuh Atas,Mikrotrans,-6.2012,106.8218,Dukuh Atas
+MT_BLOK_M,Mikrotrans Blok M,Mikrotrans,-6.2442,106.8005,Blok M
+MT_HARMONI,Mikrotrans Harmoni,Mikrotrans,-6.1746,106.8252,Harmoni

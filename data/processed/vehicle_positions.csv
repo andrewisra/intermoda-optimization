@@ -1,0 +1,4 @@
+vehicle_id,route_id,mode,current_stop_id,next_stop_id,lat,lon,speed_kmh,delay_minutes,occupancy,capacity,updated_at
+BUS_001,TJ_1,Transjakarta,TJ_SENAYAN,TJ_DUKUH_ATAS,-6.217,106.811,24,2,76,80,2026-05-23 07:18:00
+BUS_002,TJ_1,Transjakarta,TJ_BLOK_M,TJ_SENAYAN,-6.238,106.801,28,0,34,80,2026-05-23 07:19:00
+MRT_001,MRT_NS,MRT,MRT_SENAYAN,MRT_DUKUH_ATAS,-6.22,106.8092,45,0,650,1200,2026-05-23 07:20:00

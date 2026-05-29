@@ -1,0 +1,5 @@
+from_stop_id,to_stop_id,walking_time_minutes,category
+TJ_DUKUH_ATAS,MRT_DUKUH_ATAS,5,short
+TJ_DUKUH_ATAS,KRL_SUDIRMAN,7,medium
+TJ_SENAYAN,MRT_SENAYAN,4,short
+TJ_CAWANG,KRL_CAWANG,10,medium

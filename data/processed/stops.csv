@@ -1,0 +1,10 @@
+stop_id,stop_name,mode,lat,lon
+TJ_BLOK_M,Halte Transjakarta Blok M,Transjakarta,-6.2445,106.8007
+TJ_SENAYAN,Halte Transjakarta Senayan,Transjakarta,-6.2274,106.8017
+TJ_DUKUH_ATAS,Halte Transjakarta Dukuh Atas,Transjakarta,-6.2003,106.8227
+MRT_BLOK_M,Stasiun MRT Blok M,MRT,-6.244,106.7989
+MRT_SENAYAN,Stasiun MRT Senayan,MRT,-6.2264,106.8023
+MRT_DUKUH_ATAS,Stasiun MRT Dukuh Atas BNI,MRT,-6.2001,106.8231
+KRL_SUDIRMAN,Stasiun KRL Sudirman,KRL,-6.2027,106.8235
+TJ_CAWANG,Halte Transjakarta Cawang,Transjakarta,-6.2482,106.8728
+KRL_CAWANG,Stasiun KRL Cawang,KRL,-6.2429,106.8589
