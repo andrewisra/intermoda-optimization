@@ -1,0 +1,3 @@
+incident_id,timestamp,location_stop_id,incident_type,severity,description,is_active
+INC001,2026-05-23T07:20:00,TJ_DUKUH_ATAS,TRAFFIC,2,Congestion near business district,True
+INC002,2026-05-23T08:15:00,TJ_CAWANG,ACCIDENT,4,Road accident affects feeder corridor,True

@@ -1,0 +1,10 @@
+{
+  "eta": {
+    "mae_minutes": 1.105,
+    "rows": 4000
+  },
+  "density": {
+    "accuracy": 0.998,
+    "rows": 4000
+  }
+}

@@ -1,293 +1,294 @@
-# Intermodal AI System - DKI Jakarta
+# AI Transit Synchronizer (AITS)
 
-Prototype untuk **AI Open Innovation Challenge 2026 - Case 2: Public Transit Optimization and Intermodal Connectivity**.
+AITS adalah prototype **AI-Based Intermodal Transit Synchronization System** untuk Case 2: **Public Transit Optimization and Intermodal Connectivity**.
 
-Sistem ini menunjukkan cara kerja **AI-Based Intermodal Transit Synchronization System**: ETA, kepadatan, waktu jalan kaki antarmoda, dwell-time decision, incident-aware adjustment, safe speed recommendation, API backend, dan dashboard operator.
+Sistem ini menempatkan **moda rel (MRT/LRT/KRL) sebagai fixed schedule anchor** yang tidak diinterupsi. AI dan optimizer digunakan untuk menyesuaikan moda non-rel seperti TransJakarta, Mikrotrans, feeder bus, atau school bus agar koneksi antarmoda lebih sinkron dan waiting time target tetap di bawah 8 menit.
+
+## Fitur utama
+
+1. **AI ETA Delay Prediction**  
+   Model ML memprediksi keterlambatan/ETA moda non-rel berdasarkan rute, halte, jam, hari, kondisi traffic, hujan, insiden, dan kepadatan.
+
+2. **AI Passenger Density Prediction**  
+   Model ML memprediksi tingkat kepadatan halte/kendaraan: `LOW`, `MEDIUM`, `HIGH`, atau `OVERLOADED`.
+
+3. **Personalized Walking Time**  
+   Waktu jalan kaki antarmoda dikategorikan menjadi `VERY_SHORT`, `SHORT`, `MEDIUM`, `LONG`, dan `VERY_LONG`. Dengan izin pengguna, waktu ini dipersonalisasi berdasarkan profil kemampuan berjalan.
+
+4. **Missed-Connection Risk Scoring**  
+   Sistem menghitung risiko gagal mengejar moda berikutnya berdasarkan ETA, walking time, jadwal rel fixed, density, dan uncertainty.
+
+5. **Rail-Fixed Intermodal Optimizer**  
+   Jadwal MRT/LRT/KRL tidak diubah. Sistem hanya mengoptimalkan moda non-rel melalui rekomendasi:
+   - `CONNECT`: koneksi aman.
+   - `HOLD_NON_RAIL`: tahan bus/feeder 1-3 menit jika feasible.
+   - `REDIRECT_NEXT_SERVICE`: arahkan penumpang ke layanan berikutnya.
+   - `DISPATCH_EXTRA_FLEET`: siapkan armada berikutnya jika kepadatan tinggi.
+   - `SAFE_SPEED_ADJUSTMENT`: rekomendasi kecepatan aman dalam batas legal.
+
+6. **FastAPI Backend + Streamlit Dashboard**  
+   Backend menyediakan API untuk prediksi ETA, prediksi kepadatan, optimasi transfer, laporan insiden, dan KPI simulator. Dashboard memperlihatkan alur end-to-end.
 
 ---
 
-## 1. Fitur yang Sudah Tersedia
-
-- **ETA baseline** berbasis jadwal/static GTFS atau data demo.
-- **ETA delay correction model** dengan RandomForest untuk menunjukkan komponen AI/ML.
-- **Transfer optimizer** dengan target waiting time < 8 menit.
-- **Dwell time recommendation** untuk menentukan apakah moda non-rel perlu menahan keberangkatan.
-- **Walking time antarmoda** dari halte/stasiun asal ke simpul transit tujuan.
-- **Synthetic tap-in/tap-out density** untuk estimasi kepadatan halte/stasiun.
-- **Load factor recommendation** untuk pemerataan distribusi penumpang.
-- **Safe speed adjustment** agar rekomendasi kecepatan tetap dalam batas aman.
-- **Driver/operator incident report** untuk banjir, macet, kecelakaan, atau gangguan layanan.
-- **FastAPI backend** untuk integrasi aplikasi/website.
-- **Streamlit dashboard** untuk demo operator.
-- **Excel halte importer** untuk memasukkan daftar halte dari file spreadsheet.
-- **Dockerfile dan docker-compose** untuk deployment cepat.
-
----
-
-## 2. Struktur Project
+## Struktur folder
 
 ```text
-intermodal_ai_system/
-  backend/app/             FastAPI backend
-  frontend/dashboard/      Streamlit dashboard
-  src/data_pipeline/       generator data, parser GTFS, importer Excel halte
-  src/eta/                 baseline ETA dan ML delay correction
-  src/density/             tap-in density dan load factor
-  src/optimizer/           transfer, dwell time, speed adjustment
-  src/incident/            incident reporting
-  src/simulator/           simulasi transfer antarmoda
-  data/raw/                input data mentah/demo
-  data/processed/          data siap pakai aplikasi
-  docs/                    mapping proposal, contoh request API
-  scripts/                 bootstrap dan runner
-  tests/                   unit tests
+ai_transit_synchronizer/
+  backend/
+    app/
+      main.py
+      routes/
+      schemas.py
+      services.py
+  data/
+    raw/
+    processed/
+  frontend/
+    dashboard/
+      app.py
+  models/
+  scripts/
+    bootstrap_demo.py
+    run_api.py
+    train_models.py
+  src/
+    aits/
+      config.py
+      data/
+      ml/
+      optimizer/
+      simulator/
+  tests/
+  README.md
+  requirements.txt
 ```
 
 ---
 
-## 3. Setup Lokal
+## Quick start
 
-### Mac/Linux
+### 1. Buat virtual environment
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
+```
+
+Windows:
+
+```bash
+.venv\Scripts\activate
+```
+
+### 2. Install dependency
+
+```bash
 pip install -r requirements.txt
 ```
 
-### Windows PowerShell
-
-```powershell
-python -m venv .venv
-.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-```
-
----
-
-## 4. Generate Data Demo
-
-Jalankan:
+### 3. Generate data demo dan train AI models
 
 ```bash
 python scripts/bootstrap_demo.py
+python scripts/train_models.py
 ```
 
-Script ini membuat data demo di `data/raw` dan `data/processed`:
-
-- `stops.csv`
-- `routes.csv`
-- `stop_times.csv`
-- `schedules.csv`
-- `transfer_nodes.csv`
-- `fleet_capacity.csv`
-- `vehicle_positions.csv`
-- `synthetic_tapin.csv`
-- `incidents.csv`
-- `eta_delay_model.pkl`
-
-Data demo sengaja dibuat kecil agar mudah dipresentasikan, tetapi modulnya sudah siap diganti dengan GTFS, GPS, AFC tap-in/tap-out, dan incident log produksi.
-
----
-
-## 5. Jalankan API
+### 4. Jalankan backend
 
 ```bash
 uvicorn backend.app.main:app --reload
 ```
 
-Buka dokumentasi otomatis:
+Buka docs:
 
 ```text
 http://127.0.0.1:8000/docs
 ```
 
-Endpoint utama:
+### 5. Jalankan dashboard
 
-```text
-GET  /                    health check
-GET  /eta/next            ETA terdekat di halte/stasiun tertentu
-GET  /eta/arrivals        daftar arrival berikutnya
-POST /optimizer/transfer  rekomendasi transfer antarmoda
-GET  /optimizer/simulate-all simulasi semua transfer node
-POST /optimizer/speed     rekomendasi penyesuaian kecepatan aman
-GET  /density/stop        kepadatan satu halte/stasiun
-GET  /density/by-stop     ringkasan kepadatan banyak halte
-POST /incidents/report    laporan insiden dari driver/operator
-GET  /incidents/active    daftar insiden aktif
-```
-
-Contoh request transfer optimizer:
-
-```bash
-curl -X POST http://127.0.0.1:8000/optimizer/transfer \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from_stop_id": "TJ_DUKUH_ATAS",
-    "to_stop_id": "MRT_DUKUH_ATAS",
-    "current_time": "2026-05-23T07:20:00",
-    "first_mode_eta_minutes": 5,
-    "load_factor": 0.75
-  }'
-```
-
-Output contoh:
-
-```json
-{
-  "from_stop_id": "TJ_DUKUH_ATAS",
-  "to_stop_id": "MRT_DUKUH_ATAS",
-  "first_mode_eta_minutes": 5,
-  "walking_time_minutes": 5.0,
-  "decision": {
-    "decision": "connect",
-    "waiting_time_minutes": 4.0,
-    "message": "Koneksi antarmoda feasible. Waiting time masih di bawah threshold."
-  }
-}
-```
-
----
-
-## 6. Jalankan Dashboard
+Terminal baru:
 
 ```bash
 streamlit run frontend/dashboard/app.py
 ```
 
-Dashboard menampilkan:
+---
 
-- KPI walking time, waiting time, density, dan keputusan sistem.
-- Peta halte/stasiun demo.
-- Peta insiden.
-- Simulasi semua transfer node.
-- Form laporan insiden.
-- Rekomendasi safe speed adjustment.
+## API utama
+
+### Health check
+
+```text
+GET /
+```
+
+### Predict ETA
+
+```text
+POST /api/predict/eta
+```
+
+Example body:
+
+```json
+{
+  "route_id": "TJ_01",
+  "stop_id": "TJ_DUKUH_ATAS",
+  "hour": 7,
+  "day_of_week": 1,
+  "traffic_level": 4,
+  "rainfall_level": 1,
+  "incident_flag": 0,
+  "passenger_density_score": 0.55,
+  "scheduled_travel_minutes": 12
+}
+```
+
+### Predict density
+
+```text
+POST /api/predict/density
+```
+
+Example body:
+
+```json
+{
+  "stop_id": "TJ_DUKUH_ATAS",
+  "route_id": "TJ_01",
+  "hour": 7,
+  "day_of_week": 1,
+  "tap_in_count_15m": 95,
+  "scheduled_headway_minutes": 8,
+  "vehicle_capacity": 80,
+  "event_flag": 0,
+  "rainfall_level": 1
+}
+```
+
+### Optimize transfer
+
+```text
+POST /api/optimize/transfer
+```
+
+Example body:
+
+```json
+{
+  "user_id": "U_STANDARD",
+  "from_stop_id": "TJ_DUKUH_ATAS",
+  "to_station_id": "MRT_DUKUH_ATAS",
+  "route_id": "TJ_01",
+  "current_time": "2026-05-23T07:30:00",
+  "scheduled_non_rail_arrival": "2026-05-23T07:38:00",
+  "traffic_level": 3,
+  "rainfall_level": 0,
+  "incident_flag": 0,
+  "tap_in_count_15m": 85,
+  "vehicle_capacity": 80,
+  "scheduled_headway_minutes": 8
+}
+```
 
 ---
 
-## 7. Import Excel Halte Transjakarta
+## Cara kerja optimizer
 
-Letakkan file Excel di `data/raw`, lalu jalankan:
+Pseudocode:
+
+```text
+rail_departure_time = fixed
+non_rail_arrival = AI_ETA_prediction
+walking_time = transfer_category_default_time * user_multiplier
+passenger_ready_time = non_rail_arrival + walking_time
+waiting_time = rail_departure_time - passenger_ready_time
+
+if 0 <= waiting_time <= 8:
+    CONNECT
+elif passenger_ready_time > rail_departure_time:
+    choose next rail departure
+    if current non-rail can be held safely:
+        HOLD_NON_RAIL
+    else:
+        REDIRECT_NEXT_SERVICE
+elif waiting_time > 8:
+    try earlier/later feasible service or safe speed adjustment
+
+if density is HIGH or OVERLOADED:
+    add recommendation DISPATCH_EXTRA_FLEET
+```
+
+Catatan utama: **rail schedule is never modified**.
+
+---
+
+## AI model yang digunakan
+
+Prototype memakai model yang kuat namun tetap realistis untuk lomba dan data terbatas:
+
+1. **RandomForestRegressor** untuk ETA delay prediction.
+   - Cocok untuk data tabular.
+   - Robust terhadap data non-linear.
+   - Cepat dilatih.
+   - Mudah dijelaskan ke juri.
+
+2. **RandomForestClassifier** untuk passenger density classification.
+   - Cocok untuk klasifikasi `LOW`, `MEDIUM`, `HIGH`, `OVERLOADED`.
+   - Bisa bekerja baik pada data tabular awal.
+   - Tidak membutuhkan deep learning atau data masif.
+
+Untuk produksi, model bisa ditingkatkan ke LightGBM/XGBoost atau temporal model jika data historis real-time sudah tersedia.
+
+---
+
+## Data yang digunakan dalam prototype
+
+Prototype menghasilkan data demo/sintetis yang merepresentasikan:
+
+- jadwal rail fixed;
+- jadwal/arrival non-rel;
+- transfer node dan walking time category;
+- user walking profile;
+- tap-in/tap-out sintetis;
+- fitur traffic, rainfall, incident;
+- kapasitas armada;
+- data training ETA dan density.
+
+Untuk deployment produksi, data harus diganti dengan data operator:
+
+- GPS/AVL armada;
+- AFC tap-in/tap-out anonymized;
+- schedule actual vs planned;
+- fleet registry;
+- incident logs;
+- CCTV/sensor/ATCS/Jakarta Smart City data.
+
+---
+
+## Run test
 
 ```bash
-python -m src.data_pipeline.import_halte_excel --path "data/raw/Daftar_Halte_BRT_Transjakarta_31_Rute_revisi.xlsx"
-```
-
-Output:
-
-```text
-data/processed/halte_transjakarta_normalized.csv
-```
-
-Script akan mencoba membaca kolom seperti `nama halte`, `id halte`, `latitude`, `longitude`, dan `rute`. Bila nama kolom berbeda, script tetap membuat `stop_id` otomatis.
-
----
-
-## 8. Memakai GTFS Asli
-
-Jika sudah punya GTFS Transjakarta:
-
-1. Ekstrak ZIP GTFS ke:
-
-```text
-data/raw/gtfs_transjakarta/
-```
-
-2. Pastikan file ini ada:
-
-```text
-stops.txt
-routes.txt
-trips.txt
-stop_times.txt
-```
-
-3. Jalankan:
-
-```bash
-python -m src.data_pipeline.parse_gtfs
-```
-
-Untuk MVP lomba, data demo sudah cukup untuk membuktikan logika closed-loop optimizer.
-
----
-
-## 9. Jalankan Test
-
-```bash
-python -m pytest -q
-```
-
-Atau:
-
-```bash
-make test
+pytest
 ```
 
 ---
 
-## 10. Docker
+## Demo story untuk presentasi
 
-```bash
-docker compose up --build
-```
-
-API:
-
-```text
-http://127.0.0.1:8000/docs
-```
-
-Dashboard:
-
-```text
-http://127.0.0.1:8501
-```
+1. Pilih user profile: standard, relaxed, assisted mobility.
+2. Pilih transfer node, misalnya `TJ_DUKUH_ATAS -> MRT_DUKUH_ATAS`.
+3. Sistem memprediksi ETA bus dengan model AI.
+4. Sistem mempersonalisasi walking time.
+5. Sistem mencari jadwal rail berikutnya tanpa mengubah jadwal rel.
+6. Sistem menghitung waiting time dan missed-connection risk.
+7. Sistem memberi rekomendasi operasional.
+8. Dashboard menampilkan KPI: average waiting time, risk score, density level, dan decision.
 
 ---
 
-## 11. Alur Demo yang Disarankan
+## One-liner proposal
 
-1. Jalankan `python scripts/bootstrap_demo.py`.
-2. Jalankan API dan dashboard.
-3. Pilih transfer node `TJ_DUKUH_ATAS -> MRT_DUKUH_ATAS`.
-4. Tampilkan ETA moda pertama, walking time, arrival moda kedua, dan waiting time.
-5. Ubah delay atau load factor untuk menunjukkan perubahan rekomendasi.
-6. Tambahkan laporan insiden untuk menunjukkan incident-aware update.
-7. Tampilkan endpoint API `/docs` sebagai bukti integrasi app/website.
-
----
-
-## 12. Data Produksi yang Dibutuhkan
-
-Prototype ini memakai public/synthetic data. Untuk produksi, data yang perlu diminta lewat MoU/API:
-
-- AFC tap-in/tap-out anonymized.
-- AVL/GPS kendaraan.
-- Actual schedule log.
-- Fleet registry dan kapasitas armada.
-- Incident log.
-- Service alert.
-- Occupancy/crowding.
-
-Prinsip keamanan data:
-
-- tidak menyimpan nomor kartu asli;
-- menggunakan `hashed_card_id`;
-- dashboard publik hanya agregat;
-- akses raw transaction diaudit;
-- model training memakai anonymized event stream;
-- retention policy harus jelas.
-
----
-
-## 13. Mapping ke Proposal
-
-Lihat:
-
-```text
-docs/PROPOSAL_CODE_MAPPING.md
-```
-
-File tersebut menjelaskan bagian proposal mana yang sudah didukung oleh kode prototype.
+AITS treats MRT/LRT/KRL as fixed schedule anchors and uses AI-based ETA prediction, passenger density forecasting, personalized walking-time estimation, missed-connection risk scoring, and constraint-based optimization to synchronize flexible non-rail modes and reduce intermodal waiting time below 8 minutes.

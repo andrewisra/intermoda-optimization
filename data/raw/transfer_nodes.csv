@@ -1,0 +1,7 @@
+transfer_id,from_stop_id,to_station_id,walking_category,accessibility_note,walking_min_minutes,walking_max_minutes,default_walking_minutes
+TRF001,TJ_DUKUH_ATAS,MRT_DUKUH_ATAS,VERY_SHORT,Normal pedestrian corridor,1,5,4
+TRF002,KRL_SUDIRMAN,MRT_DUKUH_ATAS,SHORT,Connected urban walking corridor,6,10,8
+TRF003,TJ_BLOK_M,MRT_BLOK_M,VERY_SHORT,Close station access,1,5,4
+TRF004,TJ_LEBAK_BULUS,MRT_LEBAK_BULUS,VERY_SHORT,Integrated terminal access,1,5,4
+TRF005,TJ_CAWANG,KRL_CAWANG,MEDIUM,"Longer walking segment, road crossing",11,15,13
+TRF006,TJ_TANAH_ABANG,KRL_TANAH_ABANG,SHORT,Crowded area near market/station,6,10,8
