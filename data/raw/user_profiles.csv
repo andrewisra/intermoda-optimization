@@ -1,0 +1,6 @@
+user_id,walking_profile,walking_multiplier,consent_personalization
+U_FAST,FAST,0.85,True
+U_STANDARD,STANDARD,1.0,True
+U_RELAXED,RELAXED,1.25,True
+U_ASSISTED,ASSISTED,1.5,True
+U_ANON,STANDARD,1.0,False

@@ -1,0 +1,6 @@
+route_id,route_name,mode,scheduled_headway_minutes,default_capacity
+TJ_01,Blok M - Kota via Dukuh Atas,TRANSJAKARTA,8,80
+TJ_02,Harmoni - Dukuh Atas,TRANSJAKARTA,10,80
+MRT_NS,MRT North-South,MRT,5,1200
+KRL_CL,KRL Commuter Line,KRL,10,1800
+MKT_01,Mikrotrans Feeder Cawang,MIKROTRANS,12,12
