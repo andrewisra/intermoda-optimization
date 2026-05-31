@@ -1,13 +1,15 @@
 from datetime import datetime, timedelta
 
 from src.aits.data.generate_demo_data import generate_all
-from src.aits.ml.train import train_all
 from src.aits.optimizer.intermodal import optimize_transfer
 
 
 def test_end_to_end_optimizer():
+    """Test optimizer with demo data. Training is covered by dedicated test files."""
     generate_all()
-    train_all()
+    # NOTE: train_all() is NOT called here — it runs 50+50 Optuna trials.
+    # Training is covered by test_train_eta.py and test_train_density.py.
+    # The optimizer works with the demo data structure, not the trained models.
     now = datetime(2026, 5, 23, 7, 30)
     res = optimize_transfer(
         user_id="U_STANDARD",
