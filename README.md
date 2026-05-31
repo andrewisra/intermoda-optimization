@@ -1,6 +1,6 @@
-# AITS: AI Transit Synchronizer
+# Transportation Synchronization
 
-AI Transit Synchronizer (AITS) adalah sistem prototype untuk **Public Transit Optimization and Intermodal Connectivity**. Sistem ini dirancang untuk membantu sinkronisasi perpindahan antarmoda di DKI Jakarta dengan prinsip utama:
+Transportation Synchronization adalah sistem prototype untuk **Public Transit Optimization and Intermodal Connectivity**. Sistem ini dirancang untuk membantu sinkronisasi perpindahan antarmoda di DKI Jakarta dengan prinsip utama:
 
 > **Moda rel menjadi fixed schedule anchor, sedangkan moda non-rel dioptimalkan secara adaptif menggunakan AI.**
 
@@ -12,7 +12,7 @@ Target utama sistem adalah membantu menjaga **waiting time antarmoda di bawah 8 
 
 ## 1. Tujuan Sistem
 
-AITS dibuat untuk menjawab masalah utama pada Case 2: ketidakpastian waktu kedatangan, belum optimalnya jadwal antarmoda, dan belum sinkronnya data antaroperator transportasi.
+TRANSYNC dibuat untuk menjawab masalah utama pada Case 2: ketidakpastian waktu kedatangan, belum optimalnya jadwal antarmoda, dan belum sinkronnya data antaroperator transportasi.
 
 Sistem ini bertujuan untuk:
 
@@ -574,7 +574,7 @@ Jika Streamlit meminta email saat pertama kali dijalankan, kosongkan saja lalu t
 
 ## 9. Cara Menggunakan Dashboard
 
-Dashboard digunakan sebagai simulator untuk membuktikan bagaimana AITS bekerja.
+Dashboard digunakan sebagai simulator untuk membuktikan bagaimana TRANSYNC bekerja.
 
 ### 9.1 Input Skenario
 
