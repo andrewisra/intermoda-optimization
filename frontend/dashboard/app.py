@@ -82,25 +82,28 @@ st.map(map_df[["latitude", "longitude"]])
 st.subheader("AI Prediction Layer")
 eta_features = {
     "route_id": route_id,
-    "stop_id": selected_transfer["from_stop_id"],
+    "from_stop_id": selected_transfer["from_stop_id"],
+    "to_stop_id": selected_transfer["to_station_id"],
+    "route_mode": "TRANSJAKARTA",
+    "scheduled_travel_seconds": scheduled_arrival_min * 60,
+    "headway_minutes": float(headway),
     "hour": base_dt.hour,
     "day_of_week": base_dt.weekday(),
-    "traffic_level": traffic_level,
     "rainfall_level": rainfall_level,
-    "incident_flag": int(incident_flag),
-    "passenger_density_score": min(tap_in_count_15m / max(vehicle_capacity, 1), 1.5) / 1.5,
-    "scheduled_travel_minutes": scheduled_arrival_min,
+    "flood_flag": 0,
+    "temperature_c": 28,
+    "historical_incident_rate": 0.05,
 }
 density_features = {
-    "stop_id": selected_transfer["from_stop_id"],
+    "from_stop_id": selected_transfer["from_stop_id"],
     "route_id": route_id,
+    "headway_minutes": float(headway),
+    "vehicle_capacity": int(vehicle_capacity),
     "hour": base_dt.hour,
     "day_of_week": base_dt.weekday(),
-    "tap_in_count_15m": int(tap_in_count_15m),
-    "scheduled_headway_minutes": int(headway),
-    "vehicle_capacity": int(vehicle_capacity),
-    "event_flag": 0,
     "rainfall_level": rainfall_level,
+    "flood_flag": 0,
+    "event_flag": 0,
 }
 colA, colB = st.columns(2)
 with colA:

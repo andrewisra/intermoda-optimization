@@ -73,30 +73,32 @@ def optimize_transfer(
     transfer = _find_transfer(from_stop_id, to_station_id)
     user = _find_user(user_id)
 
-    scheduled_travel_minutes = max(1.0, (scheduled_non_rail_arrival - current_time).total_seconds() / 60.0)
+    scheduled_travel_seconds = max(60, int((scheduled_non_rail_arrival - current_time).total_seconds()))
     density_features = {
-        "stop_id": from_stop_id,
+        "from_stop_id": from_stop_id,
         "route_id": route_id,
+        "headway_minutes": float(scheduled_headway_minutes),
+        "vehicle_capacity": vehicle_capacity,
         "hour": current_time.hour,
         "day_of_week": current_time.weekday(),
-        "tap_in_count_15m": tap_in_count_15m,
-        "scheduled_headway_minutes": scheduled_headway_minutes,
-        "vehicle_capacity": vehicle_capacity,
-        "event_flag": 0,
         "rainfall_level": rainfall_level,
+        "flood_flag": 0,
+        "event_flag": 0,
     }
     density = registry.predict_density(density_features)
-    passenger_density_score = min(1.5, density.load_factor_estimate) / 1.5
     eta_features = {
         "route_id": route_id,
-        "stop_id": from_stop_id,
+        "from_stop_id": from_stop_id,
+        "to_stop_id": to_station_id,
+        "route_mode": "TRANSJAKARTA",
+        "scheduled_travel_seconds": scheduled_travel_seconds,
+        "headway_minutes": float(scheduled_headway_minutes),
         "hour": current_time.hour,
         "day_of_week": current_time.weekday(),
-        "traffic_level": traffic_level,
         "rainfall_level": rainfall_level,
-        "incident_flag": incident_flag,
-        "passenger_density_score": passenger_density_score,
-        "scheduled_travel_minutes": scheduled_travel_minutes,
+        "flood_flag": 0,
+        "temperature_c": 28,
+        "historical_incident_rate": 0.05,
     }
     eta = registry.predict_eta_delay(eta_features)
     predicted_arrival = current_time + timedelta(minutes=eta.predicted_eta_minutes)

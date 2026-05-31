@@ -6,26 +6,29 @@ from pydantic import BaseModel, Field
 
 class EtaRequest(BaseModel):
     route_id: str = "TJ_01"
-    stop_id: str = "TJ_DUKUH_ATAS"
+    from_stop_id: str = "TJ_DUKUH_ATAS"
+    to_stop_id: str = "TJ_DUKUH_ATAS_2"
+    route_mode: str = "TRANSJAKARTA"
+    scheduled_travel_seconds: int = Field(default=600, gt=0)
+    headway_minutes: float = Field(default=8.0, gt=0)
     hour: int = Field(default=7, ge=0, le=23)
     day_of_week: int = Field(default=1, ge=0, le=6)
-    traffic_level: int = Field(default=3, ge=0, le=5)
     rainfall_level: int = Field(default=0, ge=0, le=5)
-    incident_flag: int = Field(default=0, ge=0, le=1)
-    passenger_density_score: float = Field(default=0.5, ge=0, le=1.5)
-    scheduled_travel_minutes: float = Field(default=10, gt=0)
+    flood_flag: int = Field(default=0, ge=0, le=1)
+    temperature_c: int = Field(default=28, ge=15, le=45)
+    historical_incident_rate: float = Field(default=0.0, ge=0.0, le=1.0)
 
 
 class DensityRequest(BaseModel):
-    stop_id: str = "TJ_DUKUH_ATAS"
+    from_stop_id: str = "TJ_DUKUH_ATAS"
     route_id: str = "TJ_01"
+    headway_minutes: float = Field(default=8.0, gt=0)
+    vehicle_capacity: int = Field(default=80, gt=0)
     hour: int = Field(default=7, ge=0, le=23)
     day_of_week: int = Field(default=1, ge=0, le=6)
-    tap_in_count_15m: int = Field(default=80, ge=0)
-    scheduled_headway_minutes: int = Field(default=8, gt=0)
-    vehicle_capacity: int = Field(default=80, gt=0)
-    event_flag: int = Field(default=0, ge=0, le=1)
     rainfall_level: int = Field(default=0, ge=0, le=5)
+    flood_flag: int = Field(default=0, ge=0, le=1)
+    event_flag: int = Field(default=0, ge=0, le=1)
 
 
 class TransferOptimizeRequest(BaseModel):
