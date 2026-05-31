@@ -90,7 +90,7 @@ def compute_route_demand_factors(gtfs_dir: Path) -> dict[str, float]:
         route_trips = trips.groupby("route_id").size()
         route_headway = 60.0 / route_trips.clip(lower=1)
 
-    # Normalize: shortest headway (highest demand) → 1.2, longest → 0.8
+    # Normalize: shortest headway (highest demand) -> 1.2, longest -> 0.8
     min_h = route_headway.min()
     max_h = route_headway.max()
     if max_h > min_h:

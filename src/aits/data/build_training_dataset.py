@@ -25,7 +25,7 @@ def add_date_to_segments(segments: pd.DataFrame) -> pd.DataFrame:
     dates = []
     for _, row in df.iterrows():
         dow = int(row["day_of_week"])
-        if dow in [5, 6]:  # weekend → any season
+        if dow in [5, 6]:  # weekend -> any season
             month_range = list(WET_MONTHS | DRY_MONTHS)
         else:
             # weekday: alternate wet/dry to get weather variety

@@ -83,10 +83,10 @@ class TestBuildDensityDataset:
         assert df["route_demand_factor"].nunique() > 1, "Route demand factor has no variance"
 
     def test_labels_stochastic(self):
-        """Poisson noise means same features → different labels on different runs."""
+        """Poisson noise means same features -> different labels on different runs."""
         import src.aits.data.build_density_dataset as mod
         # Use parameters near LOW/MEDIUM boundary (load_factor ≈ 0.45)
-        # base_demand=55, conn_mult=0.7, non-rush → expected=38.5, Poisson(38.5)/80 ≈ 0.48
+        # base_demand=55, conn_mult=0.7, non-rush -> expected=38.5, Poisson(38.5)/80 ≈ 0.48
         # This should produce BOTH LOW and MEDIUM labels
         rng1 = np.random.default_rng(0)
         rng2 = np.random.default_rng(99)

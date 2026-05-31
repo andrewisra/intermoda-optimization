@@ -36,7 +36,7 @@ def get_weather_synthetic(d: date, t: time) -> dict:
     Rainfall patterns:
     - Wet season (Oct-Apr): higher base probability
     - Afternoon peak (14:00-18:00): convective rain boost
-    - Heavy rain → higher flood probability
+    - Heavy rain -> higher flood probability
     """
     month = d.month
     hour = t.hour

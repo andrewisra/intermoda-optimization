@@ -1,8 +1,8 @@
 """predict.py v2 — Inference pipeline for ETA (XGBoost) and Density (CatBoost) models.
 
 Architecture:
-  FeatureBuilder  →  builds raw feature DataFrame matching training schema
-  ModelRegistry   →  lazy-loads models, runs inference
+  FeatureBuilder  ->  builds raw feature DataFrame matching training schema
+  ModelRegistry   ->  lazy-loads models, runs inference
 
 ETA model: sklearn Pipeline([ColumnTransformer, XGBRegressor]) saved as .joblib
 Density model: native CatBoostClassifier saved as .cbm + LabelEncoder .joblib
@@ -95,7 +95,7 @@ def _load_gtfs_route_factors() -> dict[str, float]:
 
 
 # ---------------------------------------------------------------------------
-# FeatureBuilder — raw dict → DataFrame matching training schema
+# FeatureBuilder — raw dict -> DataFrame matching training schema
 # ---------------------------------------------------------------------------
 
 # Feature lists must match train.py exactly
