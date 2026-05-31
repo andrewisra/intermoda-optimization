@@ -1,0 +1,101 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# =========================
+# Virtual Environment
+# =========================
+.venv/
+venv/
+env/
+ENV/
+
+# =========================
+# Environment Variables
+# =========================
+.env
+.env.local
+.env.*.local
+
+# Keep example env files
+!.env.example
+
+# =========================
+# IDE / Editor
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# =========================
+# Streamlit
+# =========================
+.streamlit/
+
+# =========================
+# Generated AI Model Artifacts
+# =========================
+models/*.joblib
+models/*.pkl
+models/*.pickle
+models/metrics.json
+
+# Keep models folder if using .gitkeep
+!models/.gitkeep
+
+# =========================
+# Generated Training Data
+# =========================
+data/raw/training_eta.csv
+data/raw/training_density.csv
+
+# =========================
+# Generated Processed Data
+# =========================
+data/processed/*
+!data/processed/.gitkeep
+
+# =========================
+# Extracted GTFS Data
+# =========================
+data/raw/gtfs_transjakarta/
+
+# Optional:
+# Keep GTFS ZIP if you want offline reproducibility.
+# If you do NOT want to commit GTFS ZIP, uncomment this:
+# data/raw/gtfs_transjakarta.zip
+
+# =========================
+# Logs
+# =========================
+*.log
+logs/\
+
+
+# =========================
+# Build / Distribution
+# =========================
+build/
+dist/
+*.egg-info/
+
+# =========================
+# Test / Cache / Temporary Files
+# =========================
+.cache/
+tmp/
+temp/
+*.tmp
