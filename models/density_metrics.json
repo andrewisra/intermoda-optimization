@@ -1,0 +1,37 @@
+{
+  "best_f1_macro": 0.7412,
+  "best_params": {
+    "iterations": 209,
+    "depth": 6,
+    "learning_rate": 0.08968378305480147,
+    "l2_leaf_reg": 1.07184750245928,
+    "bagging_temperature": 0.6571236690726413,
+    "boosting_type": "Plain",
+    "random_seed": 42,
+    "verbose": 0,
+    "auto_class_weights": "Balanced",
+    "loss_function": "MultiClass",
+    "eval_metric": "TotalF1",
+    "cat_features": [
+      "from_stop_id",
+      "route_id"
+    ]
+  },
+  "cv_f1_mean": 0.7432,
+  "cv_f1_std": 0.0194,
+  "test_accuracy": 0.787,
+  "test_f1_macro": 0.7796,
+  "test_kappa": 0.6608,
+  "naive_accuracy": 0.4312,
+  "naive_f1_macro": 0.1506,
+  "n_rows": 25598,
+  "n_features": 13,
+  "n_trials": 15,
+  "classes": [
+    "HIGH",
+    "LOW",
+    "MEDIUM",
+    "OVERLOADED"
+  ],
+  "model_type": "CatBoost"
+}

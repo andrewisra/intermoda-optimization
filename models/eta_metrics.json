@@ -1,0 +1,30 @@
+{
+  "best_mae": 0.7112,
+  "best_params": {
+    "n_estimators": 293,
+    "max_depth": 3,
+    "learning_rate": 0.06367812707712892,
+    "subsample": 0.863768631339208,
+    "colsample_bytree": 0.816609768384477,
+    "min_child_weight": 10,
+    "reg_alpha": 0.019180934401115693,
+    "reg_lambda": 0.01807642055830237,
+    "gamma": 4.969213925248543,
+    "objective": "reg:squarederror",
+    "random_state": 42,
+    "n_jobs": -1,
+    "verbosity": 0
+  },
+  "cv_mae_mean": 0.7119,
+  "cv_mae_std": 0.0226,
+  "test_mae": 0.7137,
+  "test_rmse": 1.1421,
+  "test_r2": 0.8157,
+  "test_median_ae": 0.6023,
+  "within_1min_pct": 80.71,
+  "within_2min_pct": 95.92,
+  "within_3min_pct": 98.34,
+  "n_rows": 25598,
+  "n_features": 15,
+  "n_trials": 50
+}

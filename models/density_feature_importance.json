@@ -1,0 +1,15 @@
+{
+  "routes_through_stop": 24.9987873396301,
+  "is_rush_hour": 20.426571755310466,
+  "hour": 12.709327502562807,
+  "from_stop_id": 9.122215082029188,
+  "route_id": 8.399619781520334,
+  "event_flag": 8.110381719492477,
+  "rainfall_level": 7.7330473573177185,
+  "flood_flag": 3.891067351038147,
+  "route_demand_factor": 2.3534066357473202,
+  "headway_minutes": 1.8271188746770946,
+  "is_terminal": 0.26611226756152023,
+  "day_of_week": 0.16234433311286806,
+  "vehicle_capacity": 0.0
+}
